@@ -363,7 +363,7 @@ void Compute_Force(int my_particles, double masses[], vector my_forces[], vector
     vector f_part_k;
     double len, len_3, fact;
     
-    /* Global index corresponding to loc_part */
+    /* Indice corrispondente alla particelle locali */
     part = my_rank*chunk + my_particles;
     my_forces[my_particles][X] = my_forces[my_particles][Y] = 0.0;
     
@@ -373,7 +373,6 @@ void Compute_Force(int my_particles, double masses[], vector my_forces[], vector
     
     for (k = 0; k < num_particles; k++) {
         if (k != part) {
-            /* Compute force on part due to k */
             f_part_k[X] = positions[part][X] - positions[k][X];
             f_part_k[Y] = positions[part][Y] - positions[k][Y];
             
@@ -392,7 +391,7 @@ void Compute_Force(int my_particles, double masses[], vector my_forces[], vector
             printf("Proc %d > Force on part %d due to part %d = (%.3e, %.3e)\n", my_rank, part, k, f_part_k[X], f_part_k[Y]);
             #endif
             
-            /* Add force in to total forces */
+            /* Forza totale sulla particella */
             my_forces[my_particles][X] += f_part_k[X];
             my_forces[my_particles][Y] += f_part_k[Y];
         }
