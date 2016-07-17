@@ -51,4 +51,4 @@ add chart and result ..
 
 ### Author
 
-add info about you
+Marco Castaldo - 	Bachelor of Science degree in Computer Science - University of Salerno
