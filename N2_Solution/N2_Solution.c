@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include <mpi.h>
+#include "mpi.h"
 
 #define MASTER 0
 #define DIM 2                           /* sistema bidimensionale       */
