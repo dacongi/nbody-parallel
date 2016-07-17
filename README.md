@@ -8,7 +8,7 @@ The problem is described [here](https://en.wikipedia.org/wiki/N-body_simulation)
 
 ### N^2 Solution
 
-About the problem described “problem statement”, in this document’s section i described a basic parallel MPI based implementation of “n-body”.
+About the problem described in the “problem statement”, in this document’s section i described a basic parallel MPI based implementation of “n-body”.
 Basic algorithm’s idea is that the only communication among the process/tasks occurs when the algorithm is computing the forces and, in order of the computing, each process/task needs the position and mass of every other particle. 
 In this way, i use [MPI_Allgather](http://www.mpich.org/static/docs/v3.2/www3/MPI_Allgather.html) that is expressly designed for this situation; in fact this MPI’s function gathers data from all processes and distributes it to all processes.
 An other important observation is that i don’t collect data about a single particle (e.g. mass, velocity, position) into a single datatype struct. However, if i use this datatype in MPI implementation, i’ll need to use a derived datatype in the call to MPI_Allgather, and the communications with this datatype tend to be slower than communications with basic MPI datatype. For this reason, i use individual arrays for the masses, positions, and velocities. 
