@@ -27,18 +27,16 @@ In this implementation, i made the following choice:
 It will also read the input and print the results.
 So process 0 reads all the initial conditions into three n-element arrays. Since i’m storing all the masses on each process, i broadcast masses. Also, since each process will need the global array of positions for the first computation of forces, i broadcast positions. However, velocities are only used locally for the updates to positions and velocities, so we scatter velocieties.
 
-1)This is a pseudocode for the basic solution:
-2)  Get input data; 
-  for each timestep {
-    if (timestep output)
-      Print positions and velocities of particles;
-    for each local particle loc q 
-      Compute total force on loc q;
-    for each local particle loc q
-      Compute position and velocity of loc q;
-    Allgather local positions into global pos array;
-  }
-  Print positions and velocities of particles;
+This is a pseudocode for the basic solution:
+[[1]](https://books.google.it/books?id=SEmfraJjvfwC&printsec=frontcover&hl=it&source=gbs_ge_summary_r&cad=0#v=onepage&q&f=false)
+  - Get input data;
+  - For each timestep:
+    - if (timestep output) Print positions and velocities of particles,
+    - for each local particle q -> Compute total force on q,
+    - for each local particle q -> Compute position and velocity,
+    - allgather local positions into global position array;
+  - Print positions and velocities of all particles;  
+
 
 
 
