@@ -72,6 +72,9 @@ This is a pseudocode for the basic solution:
 * Print positions and velocities of all particles.
 
 ### Valitadion test
+
+I note that with delta_t (time step size) 0.1 and tree_ratio 1, the results of the two implementations are almost identical
+
 ...
 ...
 
