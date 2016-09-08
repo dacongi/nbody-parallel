@@ -79,8 +79,6 @@ The validation will be demonstrated by the match of the respective md5 of output
 In this way, the output file is obtained using the command: 
 md5 [file_Name]
 
-...
-...
 
 ### Results
 
