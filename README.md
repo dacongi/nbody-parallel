@@ -76,7 +76,7 @@ This is a pseudocode for the basic solution:
 In this document's section, i validate the results obtained in the executions of what described before.
 The validation is to perform respectively N^2Solution and Nlog(N)Solution, with the same input, twice to verify the correctness of the output obtained.
 The validation will be demonstrated by the match of the respective md5 of output files obtained.
-In this way, the output file is obtained using the command: md5 < fileName >
+In this way, the output file is obtained using the command: md5 <fileName>
 
 ...
 ...
