@@ -73,7 +73,11 @@ This is a pseudocode for the basic solution:
 
 ### Valitadion test
 
-I note that with delta_t (time step size) 0.1 and tree_ratio 1, the results of the two implementations are almost identical
+In this document's section, i validate the results obtained in the executions of what described before.
+The validation is to perform respectively N^2Solution and Nlog(N)Solution, with the same input, twice to verify the correctness of the output obtained.
+The validation will be demonstrated by the match of the respective md5 of output files obtained.
+In this way, the output file is obtained using the command:
+* md5 <fileName>;
 
 ...
 ...
