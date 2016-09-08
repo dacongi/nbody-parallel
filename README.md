@@ -67,7 +67,7 @@ This is a pseudocode for the basic solution:
 * For each timestep:
     * if (timestep output) Print positions and velocities of particles,
     * tree construction;
-    * force calculation
+    * force calculation;
     * update particles;
 * Print positions and velocities of all particles.
 
@@ -77,7 +77,8 @@ In this document's section, i validate the results obtained in the executions of
 The validation is to perform respectively N^2Solution and Nlog(N)Solution, with the same input, twice to verify the correctness of the output obtained.
 The validation will be demonstrated by the match of the respective md5 of output files obtained.
 In this way, the output file is obtained using the command: 
-md5 [file_Name]
+md5 [file_Name].
+About this consideration, i report a screenshot of validation.
 
 
 ### Results
