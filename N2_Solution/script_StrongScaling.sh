@@ -1,3 +1,5 @@
+#!/bin/sh
+
 
 if [ ! -f generate_output.txt ]
 then
