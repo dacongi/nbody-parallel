@@ -10,14 +10,14 @@
 #define Y 1                             /* coordinata y                 */
 #define FILENAME "input_file_8.txt"
 #define DEBUG_GET_ARGUMENT 1
-#define DEBUG_OUTPUT_STATE 1
+//#define DEBUG_OUTPUT_STATE 1
 //#define DEBUG_FORCES_BEFORE 0
 //#define DEBUG_FORCES_AFTER 0
 //#define DEBUG_READ_FILE 0
 //#define DEBUG_UPDATE_BEFORE 0
 //#define DEBUG_UPDATE_AFTER 0
 //#define GENERATE_INPUT_FILE 1
-#define GENERATE_OUTPUT_FILE 1
+//#define GENERATE_OUTPUT_FILE 1
 
 typedef double vector[DIM];             /* Vettore di tipo double       */
 //const double G = 6.673e-11;
@@ -378,10 +378,12 @@ void Compute_Force(int my_particles, double masses[], vector my_forces[], vector
             f_part_k[X] = positions[part][X] - positions[k][X];
             f_part_k[Y] = positions[part][Y] - positions[k][Y];
             
-            len=sqrt(pow(f_part_k[X],2)+pow(f_part_k[Y],2));
-            //len = sqrt(f_part_k[X]*f_part_k[X] + f_part_k[Y]*f_part_k[Y]);
-            len_3=pow(len,3);
-            //len_3 = len*len*len;
+            
+           // len=sqrt(pow(f_part_k[X],2)+pow(f_part_k[Y],2));
+           // len_3=pow(len,3);
+           len_3 = 1 / ((f_part_k[X]*f_part_k[X])+(f_part_k[Y])*f_part_k[Y]);
+            
+            
             
             m_g = G*masses[part]*masses[k];
             fact = m_g/len_3;
