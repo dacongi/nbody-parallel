@@ -10,7 +10,7 @@ if [ ! -f stderror.csv ]
 then
         echo "file  does not exist.";
 else
-        rm stderror.csv
+        rm stderrorStrongScaling.csv
 fi
 
 mpicc $1 -o $1.out
