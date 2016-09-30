@@ -8,7 +8,7 @@
 #define DIM 2                           /* sistema bidimensionale       */
 #define X 0                             /* coordinata x                 */
 #define Y 1                             /* coordinata y                 */
-#define FILENAME "input_file.txt"
+#define FILENAME "input_file_8.txt"
 #define DEBUG_GET_ARGUMENT 1
 #define DEBUG_OUTPUT_STATE 1
 //#define DEBUG_FORCES_BEFORE 0
@@ -122,8 +122,10 @@ int main(int argc, char* argv[]){
     #endif
     
     end_time=MPI_Wtime();
-    if(my_rank==MASTER)
+    if(my_rank==MASTER){
         printf("Tempo trascorso = %e seconds\n", end_time-start_time);
+        fprintf(stderr, "%d;%d;%e\n",num_particles,size,end_time-start_time);
+    }
 
     MPI_Type_free(&vectorMPI);
     free(masses);
@@ -463,7 +465,7 @@ void Generate_Output_File(double masses[], vector positions[], vector my_velocit
     int line;
     MPI_Gather(my_velocities, chunk, vectorMPI, velocities, chunk, vectorMPI, MASTER, MPI_COMM_WORLD);
     if(my_rank==MASTER){
-        FILE *fp_generate_output = fopen("generate_output","w+");
+        FILE *fp_generate_output = fopen("generate_output.txt","w+");
         if(!fp_generate_output){
             printf("Cannot create output file <%s>\n", "generate_output");
             exit(1);
