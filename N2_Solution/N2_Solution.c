@@ -16,8 +16,8 @@
 //#define DEBUG_READ_FILE 0
 //#define DEBUG_UPDATE_BEFORE 0
 //#define DEBUG_UPDATE_AFTER 0
-//#define GENERATE_INPUT_FILE 1
-//#define GENERATE_OUTPUT_FILE 1
+#define GENERATE_INPUT_FILE 1
+#define GENERATE_OUTPUT_FILE 1
 
 typedef double vector[DIM];             /* Vettore di tipo double       */
 //const double G = 6.673e-11;
@@ -249,7 +249,7 @@ void Generate_Init_Conditions(double masses[], vector positions[], vector my_vel
         }
         
         #ifdef GENERATE_INPUT_FILE
-        FILE *fp_generate = fopen("generate_input","w+");
+        FILE *fp_generate = fopen("generate_input.txt","w+");
         if(!fp_generate){
             printf("Cannot create input file <%s>\n", "generate_input");
             exit(1);
