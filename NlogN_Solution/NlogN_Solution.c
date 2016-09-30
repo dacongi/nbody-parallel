@@ -15,7 +15,7 @@
 //#define READ_GENERATE_BODIES 1
 //#define DEBUG_READ_FILE 1
 #define DEBUG_OUTPUT_STATE 1
-//#define GENERATE_OUTPUT_FILE 1
+#define GENERATE_OUTPUT_FILE 1
 
 
 
@@ -183,9 +183,10 @@ int main(int argc, char *argv[]){
     
     
     end_time=MPI_Wtime();
-    if(my_rank==MASTER)
+    if(my_rank==MASTER){
         printf("Tempo trascorso = %e seconds\n", end_time-start_time);
-    
+        fprintf(stderr, "%d;%d;%e\n", num_particles,size,end_time-start_time );
+    }
     
     
     
