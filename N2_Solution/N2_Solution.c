@@ -17,7 +17,7 @@
 //#define DEBUG_UPDATE_BEFORE 0
 //#define DEBUG_UPDATE_AFTER 0
 //#define GENERATE_INPUT_FILE 1
-//#define GENERATE_OUTPUT_FILE 1
+#define GENERATE_OUTPUT_FILE 1
 
 typedef double vector[DIM];             /* Vettore di tipo double       */
 //const double G = 6.673e-11;
