@@ -379,10 +379,8 @@ void Compute_Force(int my_particles, double masses[], vector my_forces[], vector
             f_part_k[Y] = positions[part][Y] - positions[k][Y];
             
             
-           // len=sqrt(pow(f_part_k[X],2)+pow(f_part_k[Y],2));
-           // len_3=pow(len,3);
-           len_3 = 1 / ((f_part_k[X]*f_part_k[X])+(f_part_k[Y])*f_part_k[Y]);
-            
+           len=sqrt(pow(f_part_k[X],2)+pow(f_part_k[Y],2));
+           len_3=pow(len,3);
             
             
             m_g = G*masses[part]*masses[k];
