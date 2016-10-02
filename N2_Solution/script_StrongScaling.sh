@@ -13,7 +13,7 @@ fi
 for((Y=50000; Y<=150000; Y+=50000))
 do
 
-        if [ ! -f generate_output.txt ]
+        if [ -f generate_output.txt ]
                 then
                 rm generate_output.txt
         fi
