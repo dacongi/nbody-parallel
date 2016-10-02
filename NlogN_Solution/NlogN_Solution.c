@@ -98,7 +98,8 @@ int main(int argc, char *argv[]){
 //    if(my_rank==MASTER)
 //       printf("%lf %lf", bodies[2].m, bodies[1].vx);
     
-    for(int i=0; i<num_particles; i++){
+    int i;
+    for(i=0; i<num_particles; i++){
         MPI_Bcast(&((bodies)[i].m),1,MPI_DOUBLE,0,MPI_COMM_WORLD);
         MPI_Bcast(&((bodies)[i].x),1,MPI_DOUBLE,0,MPI_COMM_WORLD);
         MPI_Bcast(&((bodies)[i].y),1,MPI_DOUBLE,0,MPI_COMM_WORLD);
@@ -120,17 +121,17 @@ int main(int argc, char *argv[]){
 #endif
     
 
-    
+    int step;
     //itero per il numero di step indicato
-    for(int steps=1; steps<=num_steps;steps++){
-        time = steps*delta_t;
+    for(step=1; step<=num_steps;step++){
+        time = step*delta_t;
         
         struct node * rootnode;
         double xmin=0.0, xmax=0.0;
         double ymin=0.0, ymax=0.0;
         
         
-        for(int i=0; i<num_particles; i++){
+        for(i=0; i<num_particles; i++){
             bodies[i].fx=0.0;
             bodies[i].fy=0.0;
             xmin=min(xmin,bodies[i].x);
@@ -141,20 +142,20 @@ int main(int argc, char *argv[]){
         
         rootnode=Create_Node(bodies+0,xmin,xmax,ymin,ymax);
         
-        for(int i=1; i<num_particles; i++)
+        for(i=1; i<num_particles; i++)
             Insert_Body(bodies+i,rootnode);
         
-        for(int i=my_rank; i<num_particles; i+=size){
+        for(i=my_rank; i<num_particles; i+=size){
             Tree_Sum(rootnode,bodies+i, G,treeratio);
         }
         
-        for(int i=0; i<num_particles; i++){
+        for(i=0; i<num_particles; i++){
             MPI_Bcast(&(bodies[i].fx),1,MPI_DOUBLE,i%size,MPI_COMM_WORLD);
             MPI_Bcast(&(bodies[i].fy),1,MPI_DOUBLE,i%size,MPI_COMM_WORLD);
         }
         
         //Aggiorno posizioni e velocità
-        for(int i=0; i<num_particles; i++){
+        for(i=0; i<num_particles; i++){
             bodies[i].x += delta_t*bodies[i].vx;
             bodies[i].y += delta_t*bodies[i].vy;
             
@@ -298,6 +299,7 @@ struct body * Generate_Init_Conditions(const int num_particles)
     struct body * bodies;
     double mass = 5;
     double gap= 10;
+    int i;
     
     //alloca memoria per contenere le particelle
     if(!(bodies = malloc(num_particles*sizeof(struct body))))
@@ -306,7 +308,7 @@ struct body * Generate_Init_Conditions(const int num_particles)
         return NULL;
     }
     
-    for(int i = 0; i < num_particles; i++)  //initialize with random position
+    for(i = 0; i < num_particles; i++)  //initialize with random position
     {
         bodies[i].m = mass;
         bodies[i].vx = 0.0;
@@ -330,7 +332,7 @@ struct body * Generate_Init_Conditions(const int num_particles)
         exit(1);
     }
     
-    for(int i=0; i<num_particles; i++){
+    for(i=0; i<num_particles; i++){
         fprintf(fp_generate, "%lf %lf %lf %lf %lf\n", bodies[i].m, bodies[i].x, bodies[i].y, bodies[i].vx, bodies[i].vy );
     }
     
@@ -355,6 +357,7 @@ struct body * Generate_Init_Conditions(const int num_particles)
  *    bodies:               array di strutture body
  */
 struct body * Read_File_Init_Conditons(char *filename, struct body * bodies, int num_particles){
+    int i;
     
     FILE * fp = fopen(filename, "r");
     if(!fp)
@@ -370,7 +373,7 @@ struct body * Read_File_Init_Conditons(char *filename, struct body * bodies, int
         exit(1);
     }
     
-    for(int i = 0; i < num_particles; i++)
+    for(i = 0; i < num_particles; i++)
     {
         fscanf(fp,"%le %le %le %le %le\n", &((bodies)[i].m), &((bodies)[i].x), &((bodies)[i].y), &((bodies)[i].vx), &((bodies)[i].vy));
  
@@ -382,7 +385,7 @@ struct body * Read_File_Init_Conditons(char *filename, struct body * bodies, int
     //printf("\n%d\n",num_particles);
     
 #ifdef DEBUG_READ_FILE
-    for(int i=0; i<num_particles; i++){
+    for(i=0; i<num_particles; i++){
         //printf("%d %d\n", i, num_particles);
         printf("%lf %lf %lf %lf %lf\n", bodies[i].m, bodies[i].x,bodies[i].y,bodies[i].vx,bodies[i].vy);
     }
@@ -402,9 +405,11 @@ struct body * Read_File_Init_Conditons(char *filename, struct body * bodies, int
  *    num_particles:        numero totale di particelle
  */
 void Output_State(double time, struct body * bodies, int num_particles){
+    int i;
+    
     if (my_rank == MASTER) {
         printf("Current time:%.2f\n", time);
-        for(int i=0; i<num_particles; i++){
+        for(i=0; i<num_particles; i++){
             printf("Particle:%d\tX:%f", i, bodies[i].x);
             printf("\tY:%f", bodies[i].y);
             printf("\tVx:%f ", bodies[i].vx);
