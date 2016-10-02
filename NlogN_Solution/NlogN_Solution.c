@@ -186,7 +186,7 @@ int main(int argc, char *argv[]){
     end_time=MPI_Wtime();
     if(my_rank==MASTER){
         printf("Tempo trascorso = %e seconds\n", end_time-start_time);
-        fprintf(stderr, "%d;%d;%e\n", num_particles,size,end_time-start_time );
+        fprintf(stderr, "%d,%d,%e\n", num_particles,size,end_time-start_time );
     }
     
     
