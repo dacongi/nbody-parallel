@@ -12,6 +12,7 @@ fi
 
 for((Y=50000; Y<=150000; Y+=50000))
 do
+        echo "particles,rank,time" >> stderrorStrongScaling_$Y.csv
 
         for((X=2;X<=16; X=X*2))
         do
