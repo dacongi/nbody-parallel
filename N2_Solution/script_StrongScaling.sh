@@ -1,11 +1,11 @@
 #!/bin/sh
 
-if [ -d StrongScaling_CSV ]
+if [ -d StrongScaling_CSV_N2_Solution ]
         then
-        rm -rf StrongScaling_CSV
-        mkdir StrongScaling_CSV
+        rm -rf StrongScaling_CSV_N2_Solution
+        mkdir StrongScaling_CSV_N2_Solution
         else
-        mkdir StrongScaling_CSV
+        mkdir StrongScaling_CSV_N2_Solution
 fi
 
 /oxygen/compilers/mpi/openmpi/1.8.2.jdk.1.8/bin/mpicc $1 -o $1.out -lm
@@ -26,7 +26,7 @@ do
         
         done
 
-        mv stderrorStrongScaling_$Y.csv StrongScaling_CSV/
+        mv stderrorStrongScaling_$Y.csv StrongScaling_CSV_N2_Solution/
 done
 
 exit 0
