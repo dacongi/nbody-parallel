@@ -8,7 +8,7 @@ if [ -d StrongScaling_CSV ]
         mkdir StrongScaling_CSV
 fi
 
-/oxygen/compilers/mpi/openmpi/1.8.2.jdk.1.8/bin/mpicc $1 -o $1.out
+/oxygen/compilers/mpi/openmpi/1.8.2.jdk.1.8/bin/mpicc $1 -o $1.out -lm
 
 for((Y=50000; Y<=150000; Y+=50000))
 do
