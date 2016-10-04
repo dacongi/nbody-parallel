@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ -d StrongScaling_CSV_NlogN_Solution ]
         then
