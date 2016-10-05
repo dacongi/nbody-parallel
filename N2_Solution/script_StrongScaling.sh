@@ -29,4 +29,6 @@ do
         mv stderrorStrongScaling_$Y.csv StrongScaling_CSV_N2_Solution/
 done
 
+rm $1.out
+
 exit 0
