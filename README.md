@@ -89,11 +89,11 @@ About this analysis i run the tests with the following parameters:
 
 * Input size:
     * 50000:
-      * Numbers of processors: 2, 4, 6, 8;
+      * Numbers of processors: 2, 4, 8, 16;
     * 100000:
-      * Numbers of processors: 2, 4, 6, 8;
+      * Numbers of processors: 2, 4, 8, 16;
     * 150000:
-      * Numbers of processors: 2, 4, 6, 8.
+      * Numbers of processors: 2, 4, 8, 16.
 
 These analyzes were plotted and respectively attached to the documentation. The same graphs were obtained using [Plotly](https://plot.ly), a modern platform for agile Business Intelligence and Data Science.
  
