@@ -81,7 +81,7 @@ md5 [file_Name].
 About this consideration, i report a screenshot of validation.
 
 ### Performance test
-In this document's section, i show the data about the execution of the project previously exposed and documented. About this activity, the test run took place at University of Salerno - [ISISLab](http://www.isislab.it/our-lab/).
+In this document's section, i show the data about the execution of the project previously exposed and documented. About this activity, the test run took place at University of Salerno - [ISISLab Computer Science Laboratory](http://www.isislab.it/our-lab/).
 The test was aimed to compare two different versions of Nbody, evaluating the execution times of the respective parallel version.
 Indeed, in the project's phase, my purpose is to measure the scalability (also called "efficiency scale") of the applications. This measure indicates precisely how efficient is an application whe using increasing number of parallel processing elements (i.e. CPUs, cores, processes, threads, ecc).
 In this way, in the context of computing performace, i used the notion of "strong scalability". In this case the problem size stays fixed but the number of processing elements are increased. This is used ad justification for programs that take a long time to run (programs CPU-bound).
