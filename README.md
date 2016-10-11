@@ -80,6 +80,22 @@ In this way, the output file is obtained using the command:
 md5 [file_Name].
 About this consideration, i report a screenshot of validation.
 
+### Performance test
+In this document's section, i show the data about the execution of the project previously exposed and documented. About this activity, the test run took place at University of Salerno - [ISISLab](http://www.isislab.it/our-lab/).
+The test was aimed to compare two different versions of Nbody, evaluating the execution times of the respective parallel version.
+Indeed, in the project's phase, my purpose is to measure the scalability (also called "efficiency scale") of the applications. This measure indicates precisely how efficient is an application whe using increasing number of parallel processing elements (i.e. CPUs, cores, processes, threads, ecc).
+In this way, in the context of computing performace, i used the notion of "strong scalability". In this case the problem size stays fixed but the number of processing elements are increased. This is used ad justification for programs that take a long time to run (programs CPU-bound).
+About this analysis i run the tests with the following parameters:
+*Input size:
+  *50000:
+    *Numbers of processors: 2, 4, 6, 8;
+  *100000:
+    *Numbers of processors: 2, 4, 6, 8;
+  *150000:
+    *Numbers of processors: 2, 4, 6, 8.
+
+These analyzes were plotted and respectively attached to the documentation. The same graphs were obtained using [Plotly](https://plot.ly), a modern platform for agile Business Intelligence and Data Science.
+ 
 
 ### Results
 
