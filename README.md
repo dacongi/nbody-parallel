@@ -3,16 +3,12 @@ Examples MPI nbody problem implementation, project course of Parallel and Concur
 Professor: Vittorio Scarano
 
 ### Problem statement
-
 In an n-body problem, we need to find the positions and velocities of a collection of interacting particles over a period of time. For example, an astrophysicist might want to know the positions and velocities of a collection of stars, while a chemist might want to know the positions and velocities of a collection of molecules or atoms.
 An n-body solver is a program that finds the solution to an n-body problem by simulating the behavior of the particles. The input to the problem is the mass, position, and velocity of each particle at the start of the simulation, and the output is typically the position and velocity of each particle at a sequence of user-specified times, or simply the position and velocity of each particle at the end of a user-specified time period.
 
 The problem is described [here](https://en.wikipedia.org/wiki/N-body_simulation).
 
-
-
 ### N^2 Solution
-
 About the problem described in the “problem statement”, in this document’s section i described a basic parallel MPI based implementation of “n-body problem”.
 Basic algorithm’s idea is that the only communication among the process/tasks occurs when the algorithm is computing the forces and, in order of the computing, each process/task needs the position and mass of every other system's particle. 
 In this way, i use [MPI_Allgather](http://www.mpich.org/static/docs/v3.2/www3/MPI_Allgather.html) that is expressly designed for this situation; in fact this MPI function gathers data from all processes and distributes it to all processes.
@@ -38,11 +34,7 @@ This is a pseudocode for the basic solution:
     - allgather local positions into global position array;
   - Print positions and velocities of all particles;  
 
-
-
-
 ### NLog(N) Solution 
-
 About the problem described “problem statement”, in this document’s section i described  parallel MPI implementation of “n-body problem” using Barnes-Hut Tree-Code.
 The Barnes-Hut algorithm, introduced by Josh Barnes and Piet Hut in 1986 [[2]](https://en.wikipedia.org/wiki/Barnes–Hut_simulation), describes a method to solve  “n-body problems”. The main difference with the previous implementation is that, instead of directly summing all the forces on a single particle, B-H’s implementation use a tree based approximation scheme to reduce the computational complexity from N^2 to NlogN.
 
@@ -72,7 +64,6 @@ This is a pseudocode for the basic solution:
 * Print positions and velocities of all particles.
 
 ### Valitadion test
-
 In this document's section, i validate the results obtained in the executions of what described before.
 The validation is to perform respectively N^2Solution and Nlog(N)Solution, with the same input, twice to verify the correctness of the output obtained.
 The validation will be demonstrated by the match of the respective md5 of output files obtained.
@@ -97,11 +88,26 @@ About this analysis i run the tests with the following parameters:
 
 These analyzes were plotted and respectively attached to the documentation. The same graphs were obtained using [Plotly](https://plot.ly), a modern platform for agile Business Intelligence and Data Science.
  
-
 ### Results
+In this document's section, i analyze the results obtained from the execution of two differente MPI implementations of Nbody Problem.
 
-add chart and result ..
+About N2_Solution, as shown in charts, i can certainly say that the program execution times, considering the execution parameters described in the previous section, tend to be halved by doubling the number of processors. This is certainly an expected result that describes the program's scalability.
+
+About NlogN_Solution, however, i can say that the running times do not respect the trend described in N2_Solution. Certainly, this implementation is much more efficient that the first, as described by the algorithmic complexity.
+However this code, as implemented by me, doesn't produce the expected results. In fact, the charts show that the best execution time is obtained with 4 processors and the times of execution of the same algorithm tend to increase, increasing the number of processors.
+Most probably these results are due from the adopted load distribution policy (static distribution, each processor has the same number of arbitrarily distributed particles).
+
+To improve the efficiency of the system, you should adopt an implementation that considers the "data locality" (each processor takes a part of the physical space described by Barnes-Hut, partitioning the tree and not of iterations. This will reduce the communication overhead), then consider a dynamic distribution strategy.
+
+### Conclusions
+In conclusion I note that:
+
+* Parallelizing efficient O(N log N) algorithm is much harder that parallelizing O(N2) algorithm;
+* Barnes-Hut has nonuniform, dynamically changing behavior;
+* Key issues to obtain good speedups for Barnes-Hut:
+  * Data Locality;
+  * Load Balancing;
+* Optimizations exploit physical properties of the application.
 
 ### Author
-
 Marco Castaldo - 	Bachelor of Science degree in Computer Science - University of Salerno
