@@ -74,7 +74,7 @@ About this consideration, i report a screenshot of validation.
 ### Performance test
 In this document's section, i show the data about the execution of the project previously exposed and documented. About this activity, the test run took place at University of Salerno - [ISISLab Computer Science Laboratory](http://www.isislab.it/our-lab/).
 The test was aimed to compare two different versions of Nbody, evaluating the execution times of the respective parallel version.
-Indeed, in the project's phase, my purpose is to measure the scalability (also called "efficiency scale") of the applications. This measure indicates precisely how efficient is an application whe using increasing number of parallel processing elements (i.e. CPUs, cores, processes, threads, ecc).
+Indeed, in the project's phase, my purpose is to measure the scalability (also called "efficiency scale") of the applications. This measure indicates precisely how efficient is an application when using increasing number of parallel processing elements (i.e. CPUs, cores, processes, threads, ecc).
 In this way, in the context of computing performace, i used the notion of "strong scalability". In this case the problem size stays fixed but the number of processing elements are increased. This is used ad justification for programs that take a long time to run (programs CPU-bound).
 About this analysis i run the tests with the following parameters:
 
@@ -93,7 +93,7 @@ In this document's section, i analyze the results obtained from the execution of
 
 About N2_Solution, as shown in charts, i can certainly say that the program execution times, considering the execution parameters described in the previous section, tend to be halved by doubling the number of processors. This is certainly an expected result that describes the program's scalability.
 
-About NlogN_Solution, however, i can say that the running times do not respect the trend described in N2_Solution. Certainly, this implementation is much more efficient that the first, as described by the algorithmic complexity.
+About NlogN_Solution, however, i can say that the running times do not respect the trend described in N2_Solution. Certainly, this implementation is much more efficient than the first, as described by the algorithmic complexity.
 However this code, as implemented by me, doesn't produce the expected results. In fact, the charts show that the best execution time is obtained with 4 processors and the times of execution of the same algorithm tend to increase, increasing the number of processors.
 Most probably these results are due from the adopted load distribution policy (static distribution, each processor has the same number of arbitrarily distributed particles).
 
